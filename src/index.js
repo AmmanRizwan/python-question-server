@@ -1,7 +1,6 @@
 require('dotenv/config');
 require('./config/code.config.js');
 const express = require('express');
-const serverless = require('serverless-http');
 const cors = require('cors');
 const Router = require('./routes/code.routes.js');
 const port = process.env.PORT;
@@ -23,5 +22,3 @@ index.get('/', (req, res) => {
 })
 
 index.listen(port, () => console.log("Server is running"));
-
-module.exports.handler = serverless(index);
