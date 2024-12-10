@@ -2,7 +2,7 @@ import dotenv from 'dotenv'
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import Router from './routes/code.routes.js';
+import Router from './src/routes/code.routes.js';
 dotenv.config();
 const port = process.env.PORT;
 
