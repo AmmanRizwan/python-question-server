@@ -21,3 +21,5 @@ index.get('/', (req, res) => {
 })
 
 index.listen(port, () => console.log(`index is still running on port:${port}\nListening: http://localhost:${port}`));
+
+module.exports = index;
