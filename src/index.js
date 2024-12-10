@@ -16,5 +16,8 @@ index.use(cors(
 index.use(express.json());
 index.use(express.urlencoded({extended:true}));
 index.use('/api/userdata', Router);
+index.get('/', (req, res) => {
+  res.json({message: "Python Practice Server is Running"});
+})
 
 index.listen(port, () => console.log(`index is still running on port:${port}\nListening: http://localhost:${port}`));
