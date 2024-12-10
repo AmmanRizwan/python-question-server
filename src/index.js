@@ -1,11 +1,19 @@
-require('dotenv/config');
-require('./config/code.config.js');
-const express = require('express');
-const cors = require('cors');
-const Router = require('./routes/code.routes.js');
+import dotenv from 'dotenv'
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import Router from './routes/code.routes.js';
+dotenv.config();
 const port = process.env.PORT;
 
-index = express();
+const url = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@userdata.2vpcx.mongodb.net/${process.env.MONGODB_DB}?retryWrites=true&w=majority&appName=UserData`;
+
+mongoose.connect(url)
+.then(() => {console.log("DataBase is Connected...")})
+.catch((error) => {console.log("Connection Failed..", error)});
+
+const index = express();
+
 
 index.use(cors(
   {

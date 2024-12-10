@@ -1,8 +1,7 @@
-const UserData = require('../model/code.model.js');
-
+import UserData from '../model/code.model.js';
 
 // Get All UserData
-const getAllUserData = async (req, res) => {
+export const getAllUserData = async (req, res) => {
   try {
     const getUser = await UserData.find({});
     
@@ -18,7 +17,7 @@ const getAllUserData = async (req, res) => {
 }
 
 // Get Single Data
-const getUserData = async (req, res) => {
+export const getUserData = async (req, res) => {
   try {
     const keyId = Number(req.params.id);
     console.log(keyId);
@@ -37,7 +36,7 @@ const getUserData = async (req, res) => {
 
 
 // Create UserData
-const createUserData = async (req, res) => {
+export const createUserData = async (req, res) => {
   try {
     let id;
     const findData = await UserData.find({});
@@ -69,7 +68,7 @@ const createUserData = async (req, res) => {
 }
 
 // Update UserData
-const updateUserData = async (req, res) => {
+export const updateUserData = async (req, res) => {
   try {
     const keyId = Number(req.params.id);
 
@@ -92,7 +91,7 @@ const updateUserData = async (req, res) => {
 }
 
 // Delete UserData
-const deleteUserData = async (req, res) => {
+export const deleteUserData = async (req, res) => {
   try {
     const keyId = Number(req.params.id);
     const deleteData = await UserData.findOneAndDelete({id: keyId});
@@ -105,12 +104,4 @@ const deleteUserData = async (req, res) => {
   catch(err) {
     res.status(404).json({err: err.message});
   }
-}
-
-module.exports = {
-  getAllUserData,
-  getUserData,
-  createUserData,
-  updateUserData,
-  deleteUserData,
 }
