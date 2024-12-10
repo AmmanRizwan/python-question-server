@@ -25,6 +25,7 @@ index.use(cors(
 index.use(express.json());
 index.use(express.urlencoded({extended:true}));
 index.use('/api/userdata', Router);
+
 index.get('/', (req, res) => {
   res.json({message: "Python Practice Server is Running"});
 })
