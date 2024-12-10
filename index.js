@@ -16,12 +16,7 @@ mongoose.connect(url)
 // Express
 const index = express();
 
-index.use(cors(
-  {
-    origin: "https://py-question.vercel.app/",
-    credentials: true,
-  }
-));
+index.use(cors());
 
 index.use(express.json());
 index.use(express.urlencoded({extended:true}));
