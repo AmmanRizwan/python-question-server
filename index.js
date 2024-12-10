@@ -18,7 +18,7 @@ const index = express();
 
 index.use(cors(
   {
-    origin: "http://localhost:3000",
+    origin: "https://py-question.vercel.app/",
     credentials: true,
   }
 ));
