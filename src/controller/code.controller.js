@@ -12,7 +12,7 @@ export const getAllUserData = async (req, res) => {
     res.status(200).json(getUser);
   }
   catch(err) {
-    res.status(404).json({err: err.message});
+    res.status(500).json({err: err.message});
   }
 }
 
@@ -20,7 +20,6 @@ export const getAllUserData = async (req, res) => {
 export const getUserData = async (req, res) => {
   try {
     const keyId = Number(req.params.id);
-    console.log(keyId);
     const getUser = await UserData.findOne({id: keyId});
 
     if (!getUser) {
@@ -30,7 +29,7 @@ export const getUserData = async (req, res) => {
     res.status(200).json(getUser);
   }
   catch(err) {
-    res.status(404).json({err: err.message});
+    res.status(500).json({err: err.message});
   }
 }
 
@@ -63,7 +62,7 @@ export const createUserData = async (req, res) => {
     res.status(201).json({message: "Create Data Successfully!!"});
   }
   catch(err) {
-    res.status(404).send({err: err.message});
+    res.status(500).json({err: err.message});
   }
 }
 
@@ -86,7 +85,7 @@ export const updateUserData = async (req, res) => {
     res.status(201).json({message: "Update Data Successfully!!"});
   }
   catch(err) {
-    res.status(404).json({err: err.message});
+    res.status(500).json({err: err.message});
   }
 }
 
@@ -102,6 +101,6 @@ export const deleteUserData = async (req, res) => {
     res.status(200).json({message: "Delete Data Successfully!!"});
   }
   catch(err) {
-    res.status(404).json({err: err.message});
+    res.status(500).json({err: err.message});
   }
 }

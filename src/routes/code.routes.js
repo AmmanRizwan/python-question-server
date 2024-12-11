@@ -10,8 +10,10 @@ import {
 
 const Router = express.Router();
 
-Router.route('/').get(getAllUserData).post(createUserData);
-Router.route('/:id').get(getUserData).put(updateUserData).delete(deleteUserData);
-
+Router.get('/', getAllUserData);
+Router.post('/', createUserData);
+Router.get('/:id', getUserData);
+Router.delete('/:id', deleteUserData);
+Router.put('/:id', updateUserData);
 
 export default Router;
