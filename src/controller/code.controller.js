@@ -12,7 +12,7 @@ export const getAllUserData = async (req, res) => {
     res.status(200).json(getUser);
   }
   catch(err) {
-    res.status(500).json({err: err.message});
+    res.status(500).json({message: err.message});
   }
 }
 
@@ -29,7 +29,7 @@ export const getUserData = async (req, res) => {
     res.status(200).json(getUser);
   }
   catch(err) {
-    res.status(500).json({err: err.message});
+    res.status(500).json({message: err.message});
   }
 }
 
@@ -62,7 +62,7 @@ export const createUserData = async (req, res) => {
     res.status(201).json({message: "Create Data Successfully!!"});
   }
   catch(err) {
-    res.status(500).json({err: err.message});
+    res.status(500).json({message: err.message});
   }
 }
 
@@ -85,7 +85,7 @@ export const updateUserData = async (req, res) => {
     res.status(201).json({message: "Update Data Successfully!!"});
   }
   catch(err) {
-    res.status(500).json({err: err.message});
+    res.status(500).json({message: err.message});
   }
 }
 
@@ -101,6 +101,6 @@ export const deleteUserData = async (req, res) => {
     res.status(200).json({message: "Delete Data Successfully!!"});
   }
   catch(err) {
-    res.status(500).json({err: err.message});
+    res.status(500).json({message: err.message});
   }
 }
