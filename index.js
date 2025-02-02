@@ -10,9 +10,8 @@ dotenv.config();
 const port = process.env.PORT;
 
 // MongodB DataBase
-// const url = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@userdata.2vpcx.mongodb.net/${process.env.MONGODB_DB}?retryWrites=true&w=majority&appName=UserData`;
+const url = `mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASS}@userdata.2vpcx.mongodb.net/${process.env.MONGODB_DB}?retryWrites=true&w=majority&appName=UserData`;
 
-const url = 'mongodb://localhost:27017/';
 
 // Express
 const index = express();
