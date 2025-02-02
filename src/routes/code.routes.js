@@ -1,19 +1,19 @@
 import express from 'express';
 
 import {
-  getAllUserData,
-  createUserData, 
-  getUserData, 
-  updateUserData, 
-  deleteUserData
+  getCodeData,
+  getSingleCodeData,
+  createCodeData,
+  updateCodeData,
+  deleteCodeData
 } from '../controller/code.controller.js';
 
-const Router = express.Router();
+const CodeRouter = express.Router();
 
-Router.get('/', getAllUserData);
-Router.post('/', createUserData);
-Router.get('/:id', getUserData);
-Router.delete('/:id', deleteUserData);
-Router.put('/:id', updateUserData);
+// Get All Data and Create Data Route
+CodeRouter.route("/").get(getCodeData).post(createCodeData);
 
-export default Router;
+// Get Single Data, Delete Data and Update Data Route
+CodeRouter.route("/:id").get(getSingleCodeData).delete(deleteCodeData).put(updateCodeData);
+
+export default CodeRouter;

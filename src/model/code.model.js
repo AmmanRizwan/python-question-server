@@ -1,18 +1,23 @@
 import mongoose from 'mongoose';
 
-const UserDataSchema = mongoose.Schema(
+const CodeSchema = mongoose.Schema(
   {
-    id: {
-      type: Number,
-      default: 0,
+    UserId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "users",
+      required: true,
+    },
+    language: {
+      type: String,
+      required: true,
     },
     question: {
       type: String,
-      required: [true, "Please Provide the Question!"],
+      required: true,
     },
     code: {
       type: String,
-      required: [true, "Please Provide the Code!"],
+      required: true,
     }
   },
   {
@@ -20,6 +25,6 @@ const UserDataSchema = mongoose.Schema(
   }
 )
 
-const UserData = mongoose.model("user", UserDataSchema);
+const Code = mongoose.model("code", CodeSchema);
 
-export default UserData;
+export default Code;

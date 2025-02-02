@@ -1,26 +1,26 @@
-import UserData from '../model/code.model.js';
+import Code from '../model/code.model.js';
 
 // Get All UserData
-export const getAllUserData = async (req, res) => {
+const getCodeData = async (req, res) => {
   try {
-    const getUser = await UserData.find({});
-    
-    if (!getUser) {
-      res.status(404).json({message: "Data Not Found"});
+    const userCodeData = await Code.find({UserId: req.user._id});
+
+    if (!userCodeData) {
+      return res.status(404).json({message: "Not Data Found"});
     }
 
-    res.status(200).json(getUser);
+    res.status(200).json(userCodeData);
   }
   catch(err) {
-    res.status(500).json({message: err.message});
+    res.status(400).json({message: err.message});
   }
 }
 
 // Get Single Data
-export const getUserData = async (req, res) => {
+const getSingleCodeData = async (req, res) => {
   try {
-    const keyId = Number(req.params.id);
-    const getUser = await UserData.findOne({id: keyId});
+    const { id } = req.params;
+    const getUser = await Code.findById(id);
 
     if (!getUser) {
       res.status(404).json({message: "The Data is Not In the Database"});
@@ -34,49 +34,43 @@ export const getUserData = async (req, res) => {
 }
 
 
-// Create UserData
-export const createUserData = async (req, res) => {
+const createCodeData = async (req, res) => {
   try {
-    let id;
-    const findData = await UserData.find({});
-    if (findData.length > 0)
-    {
-      id = findData[findData.length - 1].id;
-      id += 1;
-    }
-    else {
-      id = 1;
+    const { language, question, code } = req.body;
+    const codeData = await Code.create({
+      UserId: req.user._id,
+      language: language,
+      question: question,
+      code: code
+    })
+
+    if (!codeData) {
+      return res.status(404).json({messsage: "Invalid Data"});
     }
 
-    const newData = {
-      id: Number(id),
-      question: req.body.question,
-      code: req.body.code
-    };
-
-    const createData = await UserData.create(newData);
-
-    if (!createData) {
-      return res.status(404).json({err: "Cannot Create a New UserData"});
-    }
-    res.status(201).json({message: "Create Data Successfully!!"});
+    res.status(201).json({
+      message: "Successfully Create the Data"
+    })
   }
-  catch(err) {
-    res.status(500).json({message: err.message});
+  catch (err) {
+    res.status(401).json({message: err.message});
   }
 }
 
 // Update UserData
-export const updateUserData = async (req, res) => {
+const updateCodeData = async (req, res) => {
   try {
-    const keyId = Number(req.params.id);
+    const { id } = req.params;
 
-    const newData = {
-      question: req.body.question,
-      code: req.body.code,
+    const codeData = await Code.findById({_id: id});
+
+    if (codeData) {
+      codeData.language = req.body.language || codeData.language;
+      codeData.question = req.body.question || codeData.question;
+      codeData.code = req.body.code || codeData.code;
     }
 
-    const updateData = await UserData.findOneAndUpdate({id: keyId}, newData);
+    const updateData = await codeData.save();
     
     if (!updateData) {
       return res.status(404).json({message: "Cannot Update the Data"});
@@ -90,10 +84,10 @@ export const updateUserData = async (req, res) => {
 }
 
 // Delete UserData
-export const deleteUserData = async (req, res) => {
+const deleteCodeData = async (req, res) => {
   try {
-    const keyId = Number(req.params.id);
-    const deleteData = await UserData.findOneAndDelete({id: keyId});
+    const { id } = req.params;
+    const deleteData = await Code.findOneAndDelete({_id: id});
 
     if (!deleteData) {
       return res.status(404).json({err: "Cannot Delete the Data"});
@@ -104,3 +98,5 @@ export const deleteUserData = async (req, res) => {
     res.status(500).json({message: err.message});
   }
 }
+
+export { getCodeData, getSingleCodeData, createCodeData, deleteCodeData, updateCodeData };
