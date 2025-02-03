@@ -19,7 +19,7 @@ const index = express();
 index.use(cookieParser()); 
 index.use(cors(
   {
-    origin: "http://localhost:3000",
+    origin: "https://question-client-gamma.vercel.app/",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   }
