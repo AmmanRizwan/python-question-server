@@ -8,7 +8,7 @@ const generateToken = (res, userId) => {
     secure: "production",
     sameSite: "None",
     maxAge: 30 * 24 * 60 * 60 * 1000,
-    domain: "https://question-client-gamma.vercel.app/"
+    domain: "https://question-client-gamma.vercel.app"
   })
 }
 
