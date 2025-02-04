@@ -18,7 +18,7 @@ const index = express();
 index.use(cookieParser()); 
 index.use(cors(
   {
-    origin: "https://question-client-gamma.vercel.app",
+    origin: "https://question-client-gamma.vercel.app/",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
