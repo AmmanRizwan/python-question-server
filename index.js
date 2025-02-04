@@ -29,6 +29,16 @@ index.use(express.urlencoded({extended:true}));
 index.use('/api/data', protect, CodeRouter);
 index.use('/api/users', UserRouter);
 
+index.get('/', (req, res) => {
+  try {
+    res.status(200).json({message: "Question are Ready"});
+  }
+  catch (err) {
+    res.status(404).json({message: "Not Ready"});
+  }
+
+})
+
 const startServer = async () => {
   try {
     await connectDB(url);
